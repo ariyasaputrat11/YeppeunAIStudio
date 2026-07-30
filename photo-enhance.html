@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Enhance — YEPPEUN AI STUDIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-tool="enhance">
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navigasi utama">
+        <a class="brand" href="index.html" aria-label="YEPPEUN AI STUDIO beranda"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12.5" stroke="currentColor" stroke-width="1.25" opacity=".55"/><path d="M8.2 9.1L16 16.2L23.8 9.1M16 16.2V23.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24.2" cy="8.1" r="1.75" fill="currentColor"/></svg></span><span>YEPPEUN<small>AI STUDIO</small></span></a>
+        <nav class="nav-list"><a class="nav-item" href="index.html"><span>✦</span> Creative studio</a><a class="nav-item active" href="photo-enhance.html"><span>◌</span> Photo enhance</a><a class="nav-item" href="ai-fit.html"><span>♧</span> AI fit &amp; model</a><a class="nav-item" href="style-pose.html"><span>⌁</span> Style &amp; pose</a><a class="nav-item" href="video-prompt.html"><span>▷</span> Video prompt</a></nav>
+        <div class="sidebar-footer"><div class="mini-avatar">FA</div><div><strong>Creator workspace</strong><span>Personal draft</span></div></div>
+      </aside>
+      <main class="main-content tool-content">
+        <header class="tool-topbar"><p class="eyebrow">YEPPEUN AI STUDIO / PHOTO ENHANCE</p><h1 class="tool-title">Perjelas foto, <em>tetap terasa asli.</em></h1><p class="tool-lede">Tingkatkan ketajaman, cahaya, dan detail produk tanpa mengubah warna, bentuk, atau karakter foto sumber.</p></header>
+        <section class="tool-grid">
+          <article class="tool-form card"><div class="tool-section-title"><div><p class="eyebrow">SOURCE &amp; LOCKED DETAILS</p><h2>Foto yang mau dipoles</h2></div></div>
+            <div class="focused-uploads"><label class="focused-upload"><input type="file" accept="image/jpeg,image/png,image/webp" data-asset="product" /><span>+</span><strong>Foto produk / source</strong><small>JPG, PNG, WEBP · maks. 8 MB</small><img data-preview="product" alt="Pratinjau foto sumber" /></label></div>
+            <div class="tool-fields"><label class="field field-wide">Nama produk<input id="productName" placeholder="Contoh: Luna knit cardigan" /></label><label class="field">Kategori<select id="productCategory"><option value="fashion item">Fashion</option><option value="beauty product">Beauty</option><option value="bag or accessory">Tas &amp; aksesori</option><option value="home product">Home living</option></select></label><label class="field">Warna harus tetap<input id="productColor" placeholder="Contoh: oatmeal cream" /></label><label class="field field-wide">Detail yang tidak boleh berubah<input id="productDetails" placeholder="Contoh: rajut tebal, 4 kancing mutiara" /></label><label class="field">Gaya hasil<select id="visualStyle"><option value="natural high-resolution product photography, faithful to the source">Natural high-res</option><option value="clean ecommerce editorial, faithful to the source">Ecommerce clean</option></select></label><label class="field">Komposisi<input id="format" value="keep original composition" /></label><label class="field field-wide">Background<input id="background" value="preserve the exact original background" /></label><label class="field field-wide">Pose<input id="pose" value="preserve the exact original pose" /></label><label class="field field-wide">Audiens<input id="audience" value="social commerce audience" /></label></div>
+            <label class="consent-row tool-consent" for="imageRights"><input id="imageRights" type="checkbox" /><span>Saya memiliki izin untuk memakai foto ini dalam proses AI.</span></label><button id="renderTool" class="button button-primary tool-render-button"><span>✦</span> Generate gambar</button>
+          </article>
+          <article class="tool-result card"><div class="tool-result-head"><div><p class="eyebrow">ENHANCE BRIEF</p><h2 id="promptTitle">Prompt enhance natural</h2></div><div class="tool-result-actions"><button id="copyToolPrompt" class="button button-ghost">Salin</button></div></div><pre id="toolPrompt" class="tool-prompt"></pre><div class="tool-result-head"><div><p class="eyebrow">RENDER RESULT</p><h2>Hasil foto</h2></div><span id="toolRenderState" class="render-status">Belum dibuat</span></div><div id="toolImageResult" class="tool-image-result">Hasil enhance muncul di sini</div><button id="downloadResult" class="button button-dark tool-download" hidden>Unduh gambar</button></article>
+        </section>
+      </main>
+    </div><div id="toast" class="toast" role="status"></div><script type="module" src="js/pages/imageToolPage.js"></script>
+  </body>
+</html>

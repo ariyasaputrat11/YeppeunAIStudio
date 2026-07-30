@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="YEPPEUN AI STUDIO — creative workspace untuk foto produk, voice-over, dan prompt video affiliate." />
+    <title>YEPPEUN AI STUDIO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navigasi utama">
+        <a class="brand" href="#studio" aria-label="YEPPEUN AI STUDIO beranda">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="12.5" stroke="currentColor" stroke-width="1.25" opacity=".55" />
+              <path d="M8.2 9.1L16 16.2L23.8 9.1M16 16.2V23.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="24.2" cy="8.1" r="1.75" fill="currentColor" />
+            </svg>
+          </span>
+          <span>YEPPEUN<small>AI STUDIO</small></span>
+        </a>
+
+        <nav class="nav-list">
+          <a class="nav-item active" href="index.html"><span>✦</span> Creative studio</a>
+          <a class="nav-item" href="photo-enhance.html"><span>◌</span> Photo enhance</a>
+          <a class="nav-item" href="ai-fit.html"><span>♧</span> AI fit &amp; model</a>
+          <a class="nav-item" href="style-pose.html"><span>⌁</span> Style &amp; pose</a>
+          <a class="nav-item" href="video-prompt.html"><span>▷</span> Video prompt</a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="mini-avatar">FA</div>
+          <div><strong>Creator workspace</strong><span>Personal draft</span></div>
+        </div>
+      </aside>
+
+      <main id="studio" class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="studio-kicker">Product Content Lab</p>
+          </div>
+          <div class="topbar-actions">
+            <span class="status-dot">Draft tersimpan</span>
+            <button id="newDraftButton" class="button button-ghost">+ Draft baru</button>
+          </div>
+        </header>
+
+        <section class="stepper" aria-label="Tahapan pekerjaan">
+          <div class="step done"><b>01</b><span>Aset</span></div>
+          <div class="step active"><b>02</b><span>Brief</span></div>
+          <div class="step"><b>03</b><span>Prompt</span></div>
+          <div class="step"><b>04</b><span>Render &amp; voice</span></div>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="composer-card card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">01 — ASSET KIT</p>
+                <h2>Produk &amp; talent</h2>
+              </div>
+              <span class="required-note">* wajib untuk AI fit</span>
+            </div>
+
+            <div class="upload-grid">
+              <label class="upload-zone" for="productUpload" data-upload="product">
+                <input id="productUpload" type="file" accept="image/*" />
+                <span class="upload-icon">+</span>
+                <strong>Foto produk</strong>
+                <small>PNG, JPG · usahakan terang</small>
+                <img class="image-preview" alt="Pratinjau foto produk" />
+                <span class="replace-label">Ganti foto</span>
+              </label>
+              <label class="upload-zone" for="modelUpload" data-upload="model">
+                <input id="modelUpload" type="file" accept="image/*" />
+                <span class="upload-icon">+</span>
+                <strong>Foto model</strong>
+                <small>Full body / half body</small>
+                <img class="image-preview" alt="Pratinjau foto model" />
+                <span class="replace-label">Ganti foto</span>
+              </label>
+            </div>
+
+            <div class="form-grid">
+              <label class="field field-wide">Nama produk
+                <input id="productName" type="text" placeholder="Contoh: Luna knit cardigan" />
+              </label>
+              <label class="field">Kategori
+                <select id="productCategory">
+                  <option value="fashion item">Fashion</option>
+                  <option value="beauty product">Beauty</option>
+                  <option value="bag or accessory">Tas &amp; aksesori</option>
+                  <option value="home product">Home living</option>
+                  <option value="food or beverage product">Makanan &amp; minuman</option>
+                </select>
+              </label>
+              <label class="field">Warna utama
+                <input id="productColor" type="text" placeholder="Contoh: oatmeal cream" />
+              </label>
+              <label class="field field-wide">Detail yang tidak boleh berubah
+                <input id="productDetails" type="text" placeholder="Contoh: rajut tebal, 4 kancing mutiara, logo kecil di lengan" />
+              </label>
+            </div>
+          </div>
+
+          <aside class="brief-card card" id="stylePoseSection">
+            <div class="card-heading compact">
+              <div>
+                <p class="eyebrow">02 — CREATIVE DIRECTION</p>
+                <h2>Rasa kontennya</h2>
+              </div>
+            </div>
+            <div class="choice-group">
+              <span class="label">Format</span>
+              <div class="pills" id="formatPills">
+                <button class="pill selected" data-value="9:16 vertical">TikTok 9:16</button>
+                <button class="pill" data-value="1:1 square">Feed 1:1</button>
+                <button class="pill" data-value="4:5 portrait">Reels 4:5</button>
+              </div>
+            </div>
+            <label class="field">Gaya visual
+              <select id="visualStyle">
+                <option value="warm candid UGC, shot on a recent smartphone">UGC natural</option>
+                <option value="clean Korean lifestyle editorial, soft daylight">Korean clean</option>
+                <option value="cozy café diary, subtle film grain">Café diary</option>
+                <option value="minimal studio product editorial, diffused light">Studio clean</option>
+              </select>
+            </label>
+            <label class="field">Lokasi / background
+              <input id="background" type="text" value="bright bedroom corner with a full-length mirror" />
+            </label>
+            <label class="field">Pose atau aksi
+              <input id="pose" type="text" value="standing naturally, showing the fabric with one hand" />
+            </label>
+            <label class="field">Audiens
+              <input id="audience" type="text" value="women looking for effortless everyday outfits" />
+            </label>
+            <label class="toggle-row" for="showFace">
+              <input id="showFace" type="checkbox" checked />
+              <span class="toggle"></span>
+              <span><strong>Wajah model konsisten</strong><small>Jaga identitas dari foto referensi</small></span>
+            </label>
+            <label class="consent-row" for="imageRights">
+              <input id="imageRights" type="checkbox" />
+              <span>Saya memiliki izin untuk memakai foto yang diunggah untuk proses AI.</span>
+            </label>
+          </aside>
+        </section>
+
+        <section class="generator-section card">
+          <div class="generator-header">
+            <div>
+              <p class="eyebrow">03 — PILIH OUTPUT</p>
+              <h2>Apa yang mau kamu buat?</h2>
+            </div>
+            <div class="generator-actions">
+              <button id="generateButton" class="button button-ghost"><span>✦</span> Perbarui prompt</button>
+              <button id="renderButton" class="button button-primary"><span>✦</span> Generate gambar</button>
+            </div>
+          </div>
+          <div class="mode-grid" id="modeGrid">
+            <button class="mode-card selected" data-mode="video">
+              <span class="mode-number">01</span><span class="mode-icon">▷</span>
+              <strong>Video affiliate</strong><small>Hook, spill produk, outro</small>
+            </button>
+            <button class="mode-card" data-mode="enhance">
+              <span class="mode-number">02</span><span class="mode-icon">◌</span>
+              <strong>Enhance foto</strong><small>Tajam, terang, tetap natural</small>
+            </button>
+            <button class="mode-card" data-mode="fit">
+              <span class="mode-number">03</span><span class="mode-icon">♧</span>
+              <strong>AI fit</strong><small>Produk menyatu ke model</small>
+            </button>
+            <button class="mode-card" data-mode="detail">
+              <span class="mode-number">04</span><span class="mode-icon">⌕</span>
+              <strong>Product spill</strong><small>Tekstur, detail, dan close-up</small>
+            </button>
+          </div>
+        </section>
+
+        <section class="result-grid" id="resultSection" aria-live="polite">
+          <article class="prompt-card card">
+            <div class="result-heading">
+              <div><p class="eyebrow">FLOW-READY PROMPT</p><h2 id="promptTitle">Video affiliate — 3 beat</h2></div>
+              <div class="result-actions">
+                <button class="icon-button" id="downloadButton" title="Unduh prompt">↓</button>
+                <button class="button button-dark" id="copyButton">Salin prompt</button>
+              </div>
+            </div>
+            <div id="promptOutput" class="prompt-output"></div>
+            <p class="prompt-hint">Unggah foto referensi ke Google Flow, lalu tempel prompt ini. Gunakan satu klip per beat untuk hasil yang lebih stabil.</p>
+          </article>
+
+          <div class="side-results">
+            <aside class="guard-card card">
+              <div class="guard-heading"><span class="guard-shield">✓</span><div><p class="eyebrow">PROMPT GUARD</p><h2>Konsistensi dicek</h2></div></div>
+              <p class="guard-summary" id="guardSummary">Brief akan dicek saat prompt dibuat.</p>
+              <ul class="guard-list" id="guardList"></ul>
+              <div class="guard-footer">Guard otomatis ikut disisipkan di bagian akhir prompt.</div>
+            </aside>
+
+            <aside class="image-result-card card" id="imageResultCard">
+              <div class="result-image-header">
+                <div><p class="eyebrow">GENERATED IMAGE</p><h2>Hasil render</h2></div>
+                <span id="renderStatus" class="render-status">Belum dibuat</span>
+              </div>
+              <div id="imageResult" class="image-result-empty">
+                <span class="image-spark">✦</span>
+                <strong>Ruang hasilmu</strong>
+                <small>Hasil AI akan muncul di sini.</small>
+              </div>
+              <div class="image-result-actions" id="imageResultActions" hidden>
+                <button id="downloadImageButton" class="button button-dark">Unduh gambar</button>
+                <button id="useForVideoButton" class="button button-ghost">Pakai untuk video</button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="render-note">
+          <span>◈</span>
+          <p><strong>Render gambar aman:</strong> file dikirim hanya ketika tombol Generate gambar ditekan. API key tersimpan di server, sedangkan hasilnya tampil di browser untuk diunduh atau dipakai sebagai referensi video.</p>
+        </section>
+
+        <section class="voice-lab card" id="voiceLab">
+          <div class="voice-lab-header">
+            <div>
+              <p class="eyebrow">04 — VOICE LAB</p>
+              <h2>Suara yang terdengar seperti creator sungguhan.</h2>
+            </div>
+            <button id="generateVoiceButton" class="button button-primary"><span>◌</span> Generate voice</button>
+          </div>
+
+          <div class="voice-grid">
+            <div class="voice-script-panel">
+              <div class="script-label-row">
+                <label class="field" for="voiceScript">Naskah yang dibacakan</label>
+                <button id="draftScriptButton" class="text-button">✦ Buat naskah affiliate</button>
+              </div>
+              <textarea id="voiceScript" maxlength="1800" placeholder="Tulis naskah yang ingin dibacakan…"></textarea>
+              <p class="character-note"><span id="scriptCounter">0</span>/1800 karakter · Untuk video pendek, jaga sekitar 180–350 karakter.</p>
+            </div>
+
+            <aside class="voice-controls">
+              <label class="field">Karakter suara
+                <select id="voiceName">
+                  <option value="Kore">Kore — clean &amp; confident</option>
+                  <option value="Aoede">Aoede — bright &amp; breezy</option>
+                  <option value="Achird">Achird — friendly &amp; relatable</option>
+                  <option value="Sulafat">Sulafat — warm &amp; intimate</option>
+                </select>
+              </label>
+              <label class="field">Arah gaya bicara
+                <select id="voiceMood">
+                  <option value="warm Indonesian affiliate creator; candid, conversational, and lightly enthusiastic">Affiliate santai</option>
+                  <option value="soft-spoken Indonesian beauty creator; calm, warm, and close to the microphone">Soft &amp; intimate</option>
+                  <option value="bright Indonesian lifestyle creator; energetic but never shouting or overselling">Excited natural</option>
+                  <option value="polished Indonesian product reviewer; clear, credible, and premium">Review premium</option>
+                </select>
+              </label>
+              <label class="field">Tempo
+                <select id="voicePace">
+                  <option value="a natural medium pace with short believable pauses">Natural</option>
+                  <option value="a slightly brisk, lively pace while keeping every product detail clear">Sedikit cepat</option>
+                  <option value="a gentle unhurried pace with room for the listener to absorb each detail">Pelan lembut</option>
+                </select>
+              </label>
+              <label class="consent-row voice-consent" for="voiceRights">
+                <input id="voiceRights" type="checkbox" />
+                <span>Gunakan suara bawaan, bukan meniru atau mengkloning suara orang nyata.</span>
+              </label>
+            </aside>
+          </div>
+
+          <div class="audio-result" id="audioResult">
+            <div class="audio-empty" id="audioEmpty"><span>♪</span><div><strong>Voice-over akan muncul di sini</strong><small>Pilih karakter suara, lalu dengarkan hasilnya sebelum dipakai.</small></div></div>
+            <audio id="voicePlayer" controls hidden></audio>
+            <div class="audio-actions" id="audioActions" hidden>
+              <span id="voiceStatus" class="voice-status">Belum dibuat</span>
+              <button id="downloadVoiceButton" class="button button-ghost">Unduh WAV</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status"></div>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
