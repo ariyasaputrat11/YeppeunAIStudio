@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # YEPPEUN AI STUDIO
 
 MVP web untuk menyiapkan konten foto produk dan prompt video affiliate yang terasa natural.
@@ -56,3 +57,6 @@ Google Flow tetap menjadi tujuan untuk render video: unduh hasil gambar, unggah 
 Voice Lab memakai Gemini TTS melalui server dan secara default memilih `gemini-3.1-flash-tts-preview`. Tulis atau buat naskah, pilih karakter suara bawaan serta gaya bicara, lalu dengarkan hasilnya sebelum mengunduh WAV. Naskah pendek—sekitar 180–350 karakter—adalah titik awal yang baik untuk video affiliate singkat.
 
 Hanya gunakan suara bawaan. Jangan menjanjikan, meniru, atau mengkloning suara orang nyata tanpa izin mereka. Jangan menyimpan API key pada browser, dan gunakan foto model hanya dengan izin penggunaan yang jelas.
+=======
+# YeppeunAIStudio
+>>>>>>> bf1d32bfe5e9a46ec500d85880f2ae8d7e8197b4
