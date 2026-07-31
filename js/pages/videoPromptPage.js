@@ -1,6 +1,9 @@
 import { buildPrompt } from "../services/promptBuilder.js";
+import { $ } from "../shared/dom/query.js";
+import { showToast } from "../shared/ui/toast.js";
+import { copyToClipboard } from "../shared/browser/clipboard.js";
+import { downloadText } from "../shared/browser/download.js";
 
-const $ = (id) => document.getElementById(id);
 const text = (id, fallback) => $(id).value.trim() || fallback;
 
 function getBrief() {
@@ -22,22 +25,27 @@ function updatePrompt() {
   $("flowPrompt").textContent = buildPrompt("video", getBrief());
 }
 
-function showToast(message) {
-  const toast = $("toast");
-  toast.textContent = message;
-  toast.classList.add("visible");
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove("visible"), 2600);
-}
-
-$("updateFlowPrompt").addEventListener("click", () => { updatePrompt(); showToast("Prompt Flow diperbarui."); });
-$("copyFlowPrompt").addEventListener("click", async () => { await navigator.clipboard.writeText($("flowPrompt").textContent); showToast("Prompt disalin untuk Google Flow."); });
-$("downloadFlowPrompt").addEventListener("click", () => {
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(new Blob([$("flowPrompt").textContent], { type: "text/plain;charset=utf-8" }));
-  link.download = "yeppeun-studio-google-flow-prompt.txt";
-  link.click();
-  URL.revokeObjectURL(link.href);
+$("updateFlowPrompt").addEventListener("click", () => {
+  updatePrompt();
+  showToast("Prompt Flow diperbarui.");
 });
-document.querySelectorAll("input, select").forEach((field) => field.addEventListener("input", updatePrompt));
+
+$("copyFlowPrompt").addEventListener("click", async () => {
+  await copyToClipboard($("flowPrompt").textContent);
+  showToast("Prompt disalin untuk Google Flow.");
+});
+
+$("downloadFlowPrompt").addEventListener("click", () => {
+  downloadText(
+    "yeppeun-studio-google-flow-prompt.txt",
+    $("flowPrompt").textContent
+  );
+
+  showToast("Prompt berhasil diunduh.");
+});
+
+document
+  .querySelectorAll("input, select")
+  .forEach((field) => field.addEventListener("input", updatePrompt));
+
 updatePrompt();
