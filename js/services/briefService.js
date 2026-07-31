@@ -1,18 +1,47 @@
-const valueOf = (id) => document.getElementById(id).value.trim();
+import { $ } from "../shared/dom/query.js";
 
-export function getBrief(state) {
+const valueOf = (id, fallback = "") => {
+  const element = $(id);
+
+  if (!element) return fallback;
+
+  return element.value.trim() || fallback;
+};
+
+export function getBrief(options = {}) {
+  const {
+    format = "9:16 vertical",
+    showFace = true,
+    assets = {},
+  } = options;
+
   return {
-    productName: valueOf("productName") || "the featured product",
-    category: valueOf("productCategory"),
-    color: valueOf("productColor") || "the original product color",
-    details: valueOf("productDetails") || "all visible original design details",
-    style: valueOf("visualStyle"),
-    background: valueOf("background") || "a natural lifestyle setting",
-    pose: valueOf("pose") || "a relaxed natural pose",
-    audience: valueOf("audience") || "a social commerce audience",
-    format: state.format,
-    showFace: document.getElementById("showFace").checked,
-    hasProductImage: state.uploads.product,
-    hasModelImage: state.uploads.model,
+    productName: valueOf("productName", "the featured product"),
+    category: valueOf("productCategory", "fashion item"),
+    color: valueOf("productColor", "the original product color"),
+    details: valueOf(
+      "productDetails",
+      "all visible original design details"
+    ),
+    style: valueOf(
+      "visualStyle",
+      "warm candid UGC, shot on a recent smartphone"
+    ),
+    background: valueOf(
+      "background",
+      "a natural lifestyle setting"
+    ),
+    pose: valueOf(
+      "pose",
+      "a relaxed natural pose"
+    ),
+    audience: valueOf(
+      "audience",
+      "a social commerce audience"
+    ),
+    format,
+    showFace,
+    hasProductImage: Boolean(assets.product),
+    hasModelImage: Boolean(assets.model),
   };
 }
