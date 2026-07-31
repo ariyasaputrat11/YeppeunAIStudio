@@ -1,6 +1,11 @@
 import { buildPrompt } from "../services/promptBuilder.js";
 import { submitRenderJob } from "../services/renderGateway.js";
 
+import { $ } from "../shared/dom/query.js";
+import { showToast } from "../shared/ui/toast.js";
+import { copyToClipboard } from "../shared/browser/clipboard.js";
+import { downloadImage } from "../shared/browser/download.js";
+
 const tool = document.body.dataset.tool;
 const config = {
   enhance: { promptMode: "enhance", needsModel: false, title: "Prompt enhance natural" },
@@ -9,16 +14,10 @@ const config = {
 }[tool];
 
 const state = { assets: { product: null, model: null }, result: null };
-const $ = (id) => document.getElementById(id);
+
 const text = (id, fallback) => $(id)?.value.trim() || fallback;
 
-function showToast(message) {
-  const toast = $("toast");
-  toast.textContent = message;
-  toast.classList.add("visible");
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove("visible"), 2600);
-}
+
 
 function getBrief() {
   return {
@@ -113,16 +112,19 @@ async function renderImage() {
 }
 
 async function copyPrompt() {
-  await navigator.clipboard.writeText(buildCurrentPrompt());
+  await copyToClipboard(buildCurrentPrompt());
   showToast("Prompt disalin.");
 }
 
-function downloadImage() {
+function handleDownloadImage() {
   if (!state.result) return;
-  const link = document.createElement("a");
-  link.href = state.result;
-  link.download = `yeppeun-studio-${tool}-result.png`;
-  link.click();
+
+  downloadImage(
+    `yeppeun-studio-${tool}-result.png`,
+    state.result
+  );
+
+  showToast("Gambar berhasil diunduh.");
 }
 
 document.querySelectorAll("input, select").forEach((field) => field.addEventListener("input", renderPrompt));
@@ -130,5 +132,8 @@ setupAssetInput("product");
 setupAssetInput("model");
 $("renderTool").addEventListener("click", renderImage);
 $("copyToolPrompt").addEventListener("click", copyPrompt);
-$("downloadResult").addEventListener("click", downloadImage);
+$("downloadResult").addEventListener(
+  "click",
+  handleDownloadImage
+);
 renderPrompt();
