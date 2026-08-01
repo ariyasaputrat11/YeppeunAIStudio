@@ -5,6 +5,8 @@ import { $ } from "../shared/dom/query.js";
 import { showToast } from "../shared/ui/toast.js";
 import { copyToClipboard } from "../shared/browser/clipboard.js";
 import { downloadImage } from "../shared/browser/download.js";
+import { renderImage as renderWithEngine } from "../ai/image/imageEngine.js";
+import { imageToolState as state } from "./state.js";
 
 const tool = document.body.dataset.tool;
 const config = {
@@ -13,7 +15,7 @@ const config = {
   style: { promptMode: "fit", needsModel: true, title: "Prompt style & pose" },
 }[tool];
 
-const state = { assets: { product: null, model: null }, result: null };
+
 
 const text = (id, fallback) => $(id)?.value.trim() || fallback;
 
@@ -87,7 +89,7 @@ function setResultImage(imageDataUrl) {
   $("downloadResult").hidden = false;
 }
 
-async function renderImage() {
+async function handleRenderImage() {
   if (!state.assets.product) return showToast("Unggah foto produk terlebih dahulu.");
   if (config.needsModel && !state.assets.model) return showToast("Unggah foto model untuk tool ini.");
   if (!$("imageRights").checked) return showToast("Konfirmasi izin penggunaan foto terlebih dahulu.");
@@ -97,7 +99,11 @@ async function renderImage() {
   button.textContent = "Sedang membuat…";
   $("toolRenderState").textContent = "Sedang render";
   try {
-    const result = await submitRenderJob({ prompt: buildCurrentPrompt(), assets: Object.values(state.assets).filter(Boolean) });
+    const result = await renderWithEngine({
+      product: state.assets.product,
+      model: state.assets.model,
+      prompt: buildCurrentPrompt(),
+    });
     state.result = result.imageDataUrl;
     setResultImage(result.imageDataUrl);
     $("toolRenderState").textContent = "Selesai";
@@ -130,7 +136,10 @@ function handleDownloadImage() {
 document.querySelectorAll("input, select").forEach((field) => field.addEventListener("input", renderPrompt));
 setupAssetInput("product");
 setupAssetInput("model");
-$("renderTool").addEventListener("click", renderImage);
+$("renderTool").addEventListener(
+  "click",
+  handleRenderImage
+);
 $("copyToolPrompt").addEventListener("click", copyPrompt);
 $("downloadResult").addEventListener(
   "click",
